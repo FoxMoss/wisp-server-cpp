@@ -1,0 +1,29 @@
+{
+  "scripts": {
+    "install": "node-gyp rebuild"
+  },
+  "type": "module",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "express": "^4.18.2",
+    "node-addon-api": "^7.1.0",
+    "node-gyp": "^10.0.1",
+    "ws": "^8.16.0"
+  },
+  "gypfile": true,
+  "name": "wisp-server-cpp",
+  "version": "1.0.0",
+  "description": "A WispServerCpp binding to node.",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoxMoss/WispServerCpp.git"
+  },
+  "author": "FoxMoss",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FoxMoss/WispServerCpp/issues"
+  },
+  "homepage": "https://github.com/FoxMoss/WispServerCpp#readme"
+}
