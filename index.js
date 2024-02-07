@@ -22,9 +22,10 @@ export const routeUpgrade = (req, socket, head) => {
 export const init = () => {
   wisp.Init(sendCallback);
   wsServer.on('connection', socket => {
-    let id = wisp.NextID();
+    let id = wisp.Open(sendCallback)
+    console.log(id + " hewie");
+
     socketMaps[id] = socket;
-    wisp.Open(id, sendCallback)
 
     socket.on('message', message => wisp.Message(id, message.toString(), sendCallback));
   });

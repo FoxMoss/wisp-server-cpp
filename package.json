@@ -11,10 +11,12 @@
   },
   "gypfile": true,
   "name": "wisp-server-cpp",
-  "version": "1.0.1c",
+  "version": "1.0.1d",
   "description": "A WispServerCpp binding to node.",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "express": "^4.18.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FoxMoss/WispServerCpp.git"
