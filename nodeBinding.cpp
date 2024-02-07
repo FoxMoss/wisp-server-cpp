@@ -30,8 +30,6 @@ void sendCallback(void *data, size_t size, void *id, bool exit) {
 
   struct sendMessage message;
 
-  printf("hey ajn--- %i\n", *((uint32_t *)id));
-
   message.data = (char *)malloc(size);
 
   memcpy(message.data, data, size);
@@ -66,8 +64,6 @@ Napi::Value Init(const Napi::CallbackInfo &info) {
 
       Napi::Value exitVal = Napi::Boolean::New(env, exit);
       Napi::Value idVal = Napi::Number::New(env, id);
-
-      printf("hey ----- %i\n", id);
 
       std::vector<Napi::Value> argv = {exitVal, message, idVal};
 
@@ -104,7 +100,6 @@ Napi::Value Open(const Napi::CallbackInfo &info) {
 
   for (auto needle = socketMap.begin(); needle != socketMap.end(); needle++) {
     if (*needle.base() == id) {
-      printf("wejj %i\n", *needle.base());
       open_interface(sendCallback, needle.base());
     }
   }
