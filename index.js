@@ -23,7 +23,6 @@ export const init = () => {
   wisp.Init(sendCallback);
   wsServer.on('connection', socket => {
     let id = wisp.Open(sendCallback)
-    console.log(id + " hewie");
 
     socketMaps[id] = socket;
 

@@ -1,5 +1,5 @@
 # wisp-server-cpp
-`wisp-server-cpp` is the poorly named NodeJS binding of WispServerCpp it is still written largely in C++ and contains the same pompous attitude of the original with little evidence to back it up. If you so choose you can also call this project Wisp C++ Node to distinguish it from the original.
+`wisp-server-cpp` is the poorly named NodeJS binding of WispServerCpp it is still written largely in C++ and contains the same pompous attitude of the original with little evidence to back up its claims. If you so choose you can also call this project Wisp C++ Node to distinguish it from the original.
 
 All actual info about the project implementation is stored on [WispServerCpp](https://github.com/FoxMoss/WispServerCpp).
 
