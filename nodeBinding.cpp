@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 #include <map>
 #include <napi.h>
 #include <thread>
@@ -112,7 +113,22 @@ Napi::Value Message(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
 
   uint32_t id = info[0].As<Napi::Number>().Uint32Value();
-  std::string cppString = info[1].As<Napi::String>().Utf8Value();
+
+  Napi::Buffer<uint8_t> buffer = info[1].As<Napi::Buffer<uint8_t>>();
+
+  unsigned char *cString = buffer.Data();
+  size_t size = buffer.Length();
+
+  if (size < 5) {
+    // prolly invalid
+    return info[0];
+  }
+
+  std::string cppString;
+
+  for (size_t x = 0; x < size; x++) {
+    cppString.push_back(cString[x]);
+  }
 
   for (auto needle = socketMap.begin(); needle != socketMap.end(); needle++) {
     if (*needle.base() == id) {
@@ -122,8 +138,24 @@ Napi::Value Message(const Napi::CallbackInfo &info) {
   return info[0];
 }
 
+// args: id
+Napi::Value Close(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+
+  uint32_t id = info[0].As<Napi::Number>().Uint32Value();
+  std::cout << "Exit\n";
+
+  for (auto needle = socketMap.begin(); needle != socketMap.end(); needle++) {
+    if (*needle.base() == id) {
+      close_interface(sendCallback, needle.base());
+    }
+  }
+  return info[0];
+}
+
 Napi::Object Initialize(Napi::Env env, Napi::Object exports) {
   exports.Set("Open", Napi::Function::New(env, Open));
+  exports.Set("Close", Napi::Function::New(env, Close));
   exports.Set("Message", Napi::Function::New(env, Message));
   exports.Set("Init", Napi::Function::New(env, Init));
 

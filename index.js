@@ -26,7 +26,11 @@ export const init = () => {
 
     socketMaps[id] = socket;
 
-    socket.on('message', message => wisp.Message(id, message.toString(), sendCallback));
+    socket.on('message', message => {
+
+      wisp.Message(id, message, sendCallback);
+    });
+    socket.on('close', () => wisp.Close(id));
   });
 
 }
