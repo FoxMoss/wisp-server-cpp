@@ -1,10 +1,11 @@
-import { init, routeUpgrade } from "./index.js"
-import express from "express"
+import { init, routeUpgrade } from "./index"
+import http from 'node:http'
 
 init();
-console.log("Runnning Wisp Server on 6001");
-const app = express();
-const server = app.listen(6001);
+const server = http.createServer();
 server.on('upgrade', (request, socket, head) => {
   routeUpgrade(request, socket, head);
 });
+server.listen(6001)
+console.log("Runnning Wisp Server on 6001");
+

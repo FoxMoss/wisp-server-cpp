@@ -54,22 +54,24 @@ Napi::Value Init(const Napi::CallbackInfo &info) {
   nativeThread = std::thread([env] {
     auto callback = [](Napi::Env env, Napi::Function jsCallback,
                        struct sendMessage *value) {
-      char *data = value->data;
-      size_t size = value->size;
-      uint32_t id = *((uint32_t *)value->id);
-      bool exit = value->exit;
+      if (value->data != NULL) {
+        char *data = value->data;
+        size_t size = value->size;
+        uint32_t id = *((uint32_t *)value->id);
+        bool exit = value->exit;
 
-      Napi::TypedArrayOf<uint8_t> message =
-          Napi::TypedArrayOf<uint8_t>::New(env, size);
-      memcpy(message.Data(), data, size);
+        Napi::TypedArrayOf<uint8_t> message =
+            Napi::TypedArrayOf<uint8_t>::New(env, size);
+        memcpy(message.Data(), data, size);
 
-      Napi::Value exitVal = Napi::Boolean::New(env, exit);
-      Napi::Value idVal = Napi::Number::New(env, id);
+        Napi::Value exitVal = Napi::Boolean::New(env, exit);
+        Napi::Value idVal = Napi::Number::New(env, id);
 
-      std::vector<Napi::Value> argv = {exitVal, message, idVal};
+        std::vector<Napi::Value> argv = {exitVal, message, idVal};
 
-      jsCallback.Call(argv);
-      // free(value);
+        jsCallback.Call(argv);
+        free(value);
+      }
     };
     while (true) {
       std::unique_lock<std::mutex> lock(mtx);

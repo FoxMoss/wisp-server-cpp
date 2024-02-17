@@ -7,7 +7,8 @@
     "bindings": "^1.5.0",
     "node-addon-api": "^7.1.0",
     "node-gyp": "^10.0.1",
-    "ws": "^8.16.0"
+    "ws": "^8.16.0",
+    "yaml": "^2.3.4"
   },
   "gypfile": true,
   "name": "wisp-server-cpp",
