@@ -12,7 +12,7 @@
   },
   "gypfile": true,
   "name": "wisp-server-cpp",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A WispServerCpp binding to node.",
   "main": "index.js",
   "devDependencies": {

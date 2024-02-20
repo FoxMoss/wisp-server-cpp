@@ -54,7 +54,7 @@ Napi::Value Init(const Napi::CallbackInfo &info) {
   nativeThread = std::thread([env] {
     auto callback = [](Napi::Env env, Napi::Function jsCallback,
                        struct sendMessage *value) {
-      if (value->data != NULL) {
+      if (value->data != NULL && value->id != NULL) {
         char *data = value->data;
         size_t size = value->size;
         uint32_t id = *((uint32_t *)value->id);
