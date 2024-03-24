@@ -5,6 +5,11 @@ All actual info about the project implementation is stored on [WispServerCpp](ht
 
 ## Usage
 
+
+> [!IMPORTANT]  
+> 
+
+
 Include and install wisp-server-cpp
 ```js
 import { init, routeRequest, routeUpgrade, shouldRoute } from "wisp-server-cpp"
@@ -14,6 +19,11 @@ Call init to setup the internal callbacks before using routeUpgrade anywhere.
 ```js
 init();
 ```
+Optionally choose the prefix for shouldRoute, default is `/wisp/`
+```js
+init("/non-suspicious-path/");
+```
+
 
 Add express and HTTP server boilerplate.
 ```js

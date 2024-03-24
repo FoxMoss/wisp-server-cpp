@@ -2,7 +2,7 @@ import { init, routeRequest, routeUpgrade, shouldRoute } from "./index.js"
 import http from 'node:http'
 import express from "express"
 
-init();
+init("/");
 const app = express();
 const server = http.createServer();
 
@@ -22,5 +22,5 @@ server.on('upgrade', (request, socket, head) => {
   socket.end();
 });
 
-server.listen(6001)
-console.log("Runnning Wisp Server on 6001");
+server.listen(4000)
+console.log("Runnning Wisp Server on 4000");
