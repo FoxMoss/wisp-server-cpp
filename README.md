@@ -7,7 +7,7 @@ All actual info about the project implementation is stored on [WispServerCpp](ht
 
 
 > [!IMPORTANT]  
-> 
+> You may want to use `--force-node-api-uncaught-exceptions-policy=trueto` when running node.
 
 
 Include and install wisp-server-cpp
